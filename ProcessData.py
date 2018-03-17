@@ -159,7 +159,7 @@ class EnglishTeacher(Teacher):
         Categories_to_storage = [Categories[i] for i in list(df_feature_to_storage['Index'])]
         df_feature_to_storage['Lable'] = list(LabelEncoderEnglishCategory.transform(Categories_to_storage))
         df_trainning_data = self.ReadDataFrameFromMySQL('TrainningData')
-        df_trainning_data_new = pd.concat([df_trainning_data, df_feature_to_storage.drop(columns=['Index'])], axis=0, ignore_index= True)
+        df_trainning_data_new = pd.concat([df_trainning_data, df_feature_to_storage.drop(['Index'], axis = 1)], axis=0, ignore_index= True)
         self.WriteDataFrimeToSQLDatabase(df_trainning_data_new, 'TrainningData')
         return 'Status: Your test is sent successfully, if you want to do next test you must click round button in top left conner to reload webpage'
 

@@ -68,7 +68,7 @@ def ConvertDictionaryToDataFrameToStore(dict, Answers, k_neighbors, length_featu
     lables = list(df_trainning['Lable'])
     # PreCategorize test and built feature to storage
     df = FirtsStepCategozineBySeaching(df)
-    df = df.reset_index().drop(columns='index')
+    df = df.reset_index().drop(['index'], axis = 1)
     df['Index'] = list(df.index)
     df_unlabled = df[df['Category'] == '0']
     feature_to_storage = [ExtractFeaturesFromOptions(option) for option in list(df_unlabled['options'])]
@@ -114,6 +114,6 @@ def CategorizePhysicsTest(Answers, text_exam):
     conditions = [df_result['Header'].apply(lambda raw_text_question: functools.reduce(operator.or_, map(functools.partial(lambda y, x: x in y, raw_text_question), list_indicator)))
                   for list_indicator in PhysicsIndicatorsList]
     df_result['Category'] = np.select(conditions, PhysicsCategory)
-    return df_result.drop(columns=['Header'])
+    return df_result.drop(['Header'], axis = 1)
 
 

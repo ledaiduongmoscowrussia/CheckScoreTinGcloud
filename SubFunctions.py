@@ -49,7 +49,7 @@ class SubFunctions:
 
     def RemoveColumns(self, path, list_of_columns):
         df = self.ReadDataFrameFromMySQL(path)
-        df = df.drop(columns=list_of_columns)
+        df = df.drop(list_of_columns, axis = 1)
         self.WriteDataFrimeToSQLDatabase(df, path)
 
     def WriteToExcel(self, df, path):
