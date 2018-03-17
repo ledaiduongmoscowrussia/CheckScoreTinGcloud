@@ -10,7 +10,8 @@ class SubFunctions:
     def __init__(self):pass
 
     def ReadDataFrameFromMySQL(self, path):
-        df = pd.io.gbq.read_gbq('SELECT * FROM CheckScoreTin.'+ path + ' ORDER BY id ', ' artful-journey-197609').drop(columns = ['id'])
+        df = pd.io.gbq.read_gbq('SELECT * FROM CheckScoreTin.' + path + ' ORDER BY id ', 'artful-journey-197609').drop(
+            ['id'], axis=1)
         return df
 
     def WriteDataFrimeToSQLDatabase(self, df, table):
