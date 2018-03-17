@@ -4,15 +4,13 @@ import warnings;warnings.filterwarnings('ignore')
 from Dataset import *
 from sqlalchemy import create_engine
 
-engine = create_engine('mysql+mysqldb://ledaiduongvnth:leduysao290893@ledaiduongvnth.mysql.pythonanywhere-services.com/ledaiduongvnth$CheckScoreTin', pool_recycle=280)
-
+# engine = create_engine('mysql+mysqldb://ledaiduongvnth:leduysao290893@ledaiduongvnth.mysql.pythonanywhere-services.com/ledaiduongvnth$CheckScoreTin', pool_recycle=280)
 
 class SubFunctions:
     def __init__(self):pass
 
     def ReadDataFrameFromMySQL(self, path):
-        with engine.connect() as conn, conn.begin():
-            df = pd.read_sql_table(path, conn)
+        df = pd.io.gbq.read_gbq('SELECT * FROM CheckScoreTin.'+ path + ' ORDER BY id ', ' artful-journey-197609').drop(columns = ['id'])
         return df
 
     def WriteDataFrimeToSQLDatabase(self, df, table):
