@@ -15,7 +15,8 @@ class SubFunctions:
         return df
 
     def WriteDataFrimeToSQLDatabase(self, df, table):
-        df.to_sql(table, engine, if_exists='replace', index=False)
+        df.insert(loc=0, column='id', value=range(df.shape[0]))
+        pd.io.gbq.to_gbq(df, 'CheckScoreTin.' + table, 'artful-journey-197609', if_exists='replace')
 
     def AddSeriesOrListToRowOfDataFrameByIndexEqualLength(self,path,series_or_list):
         series = pd.Series(series_or_list)
