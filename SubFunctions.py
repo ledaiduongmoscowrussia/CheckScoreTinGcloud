@@ -2,15 +2,12 @@ import numpy as np
 import pandas as pd
 import warnings;warnings.filterwarnings('ignore')
 from Dataset import *
-from sqlalchemy import create_engine
-
-# engine = create_engine('mysql+mysqldb://ledaiduongvnth:leduysao290893@ledaiduongvnth.mysql.pythonanywhere-services.com/ledaiduongvnth$CheckScoreTin', pool_recycle=280)
 
 class SubFunctions:
     def __init__(self):pass
 
     def ReadDataFrameFromMySQL(self, path):
-        df = pd.io.gbq.read_gbq('SELECT * FROM CheckScoreTin.' + path + ' ORDER BY id ', 'artful-journey-197609').drop(
+        df = pd.read_gbq('SELECT * FROM CheckScoreTin.' + path + ' ORDER BY id ', 'artful-journey-197609').drop(
             ['id'], axis=1)
         return df
 
