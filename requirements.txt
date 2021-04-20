@@ -34,7 +34,7 @@ openpyxl==2.4.9
 Pillow==5.0.0
 pluggy==0.6.0
 ply==3.10
-py==1.5.2
+py==1.10.0
 pycryptodome==3.4.7
 pymongo==3.6.0
 pyparsing==2.2.0
